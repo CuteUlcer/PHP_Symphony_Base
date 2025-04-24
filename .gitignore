@@ -1,28 +1,29 @@
 ###> Custom Rules ###
-# Игнорировать все файлы в корне, кроме исключений
+# Игнорировать ВСЕ файлы в корне
 /*
+!/.gitignore
 !/.env
 !/.env.test
-!/.gitignore
-!/*.md
+!/README.md
 !/*.txt
 !/composer.*
 !/symfony.lock
-!/package.json
-!/package-lock.json
 !/phpunit.xml.dist
 
-# Дополнительные исключения для Symfony
-!/importmap.php
+# Разрешаем папки (с их содержимым)
 !/config/
 !/public/
 !/src/
 !/migrations/
 !/assets/
 !/bin/
+!/templates/
+!/translations/
+!/var/
+!/vendor/
 
-# Игнорировать конкретные файлы (если нужно)
-/compose.override.yaml
-/compose.yaml
+# Явно запрещаем ненужное
+/compose.*
 /.env.dev
+/importmap.php
 ###< Custom Rules ###
