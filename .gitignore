@@ -1,5 +1,4 @@
-###> Custom Rules ###
-# Игнорировать ВСЕ файлы в корне
+### Игнорировать ВСЁ в корне, кроме разрешённого ###
 /*
 !/.gitignore
 !/.env
@@ -10,20 +9,20 @@
 !/symfony.lock
 !/phpunit.xml.dist
 
-# Разрешаем папки (с их содержимым)
+### Разрешить папки Symfony ###
+!/src/
 !/config/
 !/public/
-!/src/
 !/migrations/
-!/assets/
 !/bin/
 !/templates/
 !/translations/
-!/var/
-!/vendor/
+!/assets/
 
-# Явно запрещаем ненужное
-/compose.*
-/.env.dev
-/importmap.php
-###< Custom Rules ###
+### Стандартные исключения Symfony ###
+/var/
+/vendor/
+/.env.local
+/.env.*.local
+/public/bundles/
+.phpunit.result.cache
