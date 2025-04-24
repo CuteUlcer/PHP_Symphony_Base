@@ -1,25 +1,28 @@
+###> Custom Rules ###
+# Игнорировать все файлы в корне, кроме исключений
+/*
+!/.env
+!/.env.test
+!/.gitignore
+!/*.md
+!/*.txt
+!/composer.*
+!/symfony.lock
+!/package.json
+!/package-lock.json
+!/phpunit.xml.dist
 
-###> symfony/framework-bundle ###
-/.env.local
-/.env.local.php
-/.env.*.local
-/config/secrets/prod/prod.decrypt.private.php
-/public/bundles/
-/var/
-/vendor/
-###< symfony/framework-bundle ###
+# Дополнительные исключения для Symfony
+!/importmap.php
+!/config/
+!/public/
+!/src/
+!/migrations/
+!/assets/
+!/bin/
 
-###> phpunit/phpunit ###
-/phpunit.xml
-.phpunit.result.cache
-###< phpunit/phpunit ###
-
-###> symfony/phpunit-bridge ###
-.phpunit.result.cache
-/phpunit.xml
-###< symfony/phpunit-bridge ###
-
-###> symfony/asset-mapper ###
-/public/assets/
-/assets/vendor/
-###< symfony/asset-mapper ###
+# Игнорировать конкретные файлы (если нужно)
+/compose.override.yaml
+/compose.yaml
+/.env.dev
+###< Custom Rules ###
