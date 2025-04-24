@@ -8,6 +8,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 /**
  * Форма для создания и редактирования задач
@@ -34,6 +35,18 @@ class TaskType extends AbstractType
             // Поле даты создания (отображается как единое поле ввода)
             ->add('created_at', null, [
                 'widget' => 'single_text',   // Использует HTML5 input[type="datetime-local"]
+            ])
+            
+            // Добавляем новое поле для статуса
+            ->add('status', ChoiceType::class, [
+                'label' => 'Статус задачи',
+                'choices' => [
+                    'New' => 'new',
+                    'In Progress' => 'in_progress',
+                    'Done' => 'done',
+                ],
+                'placeholder' => 'Choose a status',
+                'required' => true, // Можно установить false, если статус может быть не выбран
             ])
         ;
     }

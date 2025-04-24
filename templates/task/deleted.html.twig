@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Удалённые задачи{% endblock %}
+
+{% block body %}
+    <h1>Удалённые задачи</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Название</th>
+                <th>Дата удаления</th>
+                <th>Действия</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for task in pagination %}
+            <tr>
+                <td>{{ task.id }}</td>
+                <td>{{ task.title }}</td>
+                <td>{{ task.deletedAt ? task.deletedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <form method="post" action="{{ path('app_task_restore', {'id': task.id}) }}">
+                        <input type="hidden" name="_token" value="{{ csrf_token('restore' ~ task.id) }}">
+                        <button class="btn btn-success">Восстановить</button>
+                    </form>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">Нет удалённых задач</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    {# Пагинация #}
+    <div class="navigation">
+        {{ knp_pagination_render(pagination) }}
+    </div>
+
+    <a href="{{ path('app_task_index') }}" class="btn btn-primary mt-3">Назад к списку задач</a>
+{% endblock %}
