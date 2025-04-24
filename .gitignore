@@ -26,3 +26,18 @@
 /.env.*.local
 /public/bundles/
 .phpunit.result.cache
+
+# Игнорировать всю подпапку todo-project
+/todo-project/
+
+# Стандартные исключения (если нужно)
+/.idea/
+/vendor/
+/node_modules/
+
+### Custom ignored root files ###
+/.env
+/.env.test
+/composer.lock
+/phpunit.xml.dist
+/symfony.lock
