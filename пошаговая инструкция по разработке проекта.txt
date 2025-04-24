@@ -1,0 +1,90 @@
+Установка PHP 8.2+, Composer (менеджер зависимостей PHP), Symfony
+https://www.apachefriends.org/ru/index.html
+https://getcomposer.org/download/
+https://symfony.com/download (amd64)
+
+закинуть в PATH установленный стек
+(Win + R - sysdm.cpl - Дополнительно - Переменные среды - Системные переменные - Path - Изменить - Создать
+C:\xampp\php
+C:\ProgramData\ComposerSetup\bin
+C:\symfony
+)
+
+Если все верно, то должны выводиться версии в cmd при вводе:
+php -v
+composer -v
+symfony -v
+
+терминал vs code (вид - терминал)
+cd "путь к проекту"
+symfony new todo-project --version="7.0.*" --webapp
+
+запуск встроенного веб-сервера:
+symfony serve
+
+http://127.0.0.1:8000/
+
+открываем обычный терминал
+
+перед созданием сущности можно проверить доступные PDO-драйверов на ПК для СУБД:
+php -r "print_r(PDO::getAvailableDrivers());"
+
+создаем сущность "Task":
+php bin/console make:entity Task
+
+последовательно вводим поля:
+title
+string
+255
+
+description
+text
+
+created_at
+datetime
+
+Убеждаемся в запуске БД через XAMPP(в моем сулчае - MySQL)
+
+Cоздаем БД:
+php bin/console doctrine:database:create
+
+Создаем миграцию:
+Анализ текущих сущностей
+php bin/console make:migration
+
+Применение всех невыполненных миграций к базе данных
+php bin/console doctrine:migrations:migrate
+
+Убедаемся, что таблицы были успешно созданы:
+php bin/console doctrine:query:sql "SHOW TABLES"
+
+Генерируем 
+php bin/console make:crud Task
+TaskController
+no
+
+настраиваем маршруты
+Файл config/routes.yaml должен содержать:
+
+app_task:
+    resource: ../src/Controller/TaskController.php
+    type: attribute
+
+
+
+Обновляем форму (src/Form/TaskType.php), 
+шаблон (templates/task/index.html.twig), 
+контроллер (src/Controller/TaskController.php)
+
+Проверяем:
+symfony serve
+
+чекаем:
+http://localhost:8000/task
+
+тестируем вводим задачи
+и проверяем наличие здесь
+php bin/console doctrine:query:sql "SELECT * FROM task"
+
+
+
